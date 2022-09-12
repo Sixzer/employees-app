@@ -4,12 +4,12 @@ import "./emp-list.css";
 const EmpList = function ({data}) {
 
     const elements = data.map(item => {
-        
+
+        const {id, ...itemProps} = item;
+
         return (
             // <EmpListItem name={item.name} salary={item.salary}/>
-            
-
-            <EmpListItem {...item}/>
+            <EmpListItem key={id} {...itemProps}/> 
         )
     });
 
