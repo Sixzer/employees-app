@@ -5,6 +5,7 @@ import SearchPanel from "../search-panel/search-panel";
 import AppFilter from "../app-filter/app-filter";
 import EmpList from "../emp-list/emp-list";
 import EmpAddForm from "../emp-add-form/emp-add-form";
+import nextId from "react-id-generator";
 
 import "./app.css";
 
@@ -15,7 +16,7 @@ class App extends Component {
         this.state = {
             data: [
                 {name: "Lev", salary: 55, cookie: false, id:1},
-                {name: "Alexandr", salary: 777, cookie: true, id:2},
+                {name: "Alexandr", salary: 777, cookie: false, id:2},
                 {name: "Irina", salary: 6666, cookie: false, id:3},
             ]
         }
@@ -27,6 +28,22 @@ class App extends Component {
             return {
                 data: data.filter(item => item.id !== id),
             }
+        })
+    }
+
+    addItem = (name, salary) => {
+        const newItem = {
+            name,
+            salary,
+            cookie: false,
+            id: nextId(),
+        }
+        
+        this.setState(({data}) => {
+            const newArr = [ ...data, newItem];
+            return {
+                data: newArr,
+            } 
         })
     }
 
@@ -46,7 +63,8 @@ class App extends Component {
                 <EmpList 
                     data={data}
                     onDelete={this.deleteItem} />
-                <EmpAddForm />
+                <EmpAddForm 
+                    onAdd={this.addItem}/>
             </div>
         );
     }
