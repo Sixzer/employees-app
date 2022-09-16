@@ -23,6 +23,10 @@ class App extends Component {
     }
 
     deleteItem = (id) => {
+
+
+        localStorage.removeItem(id);
+
         this.setState(({data}) => {
 
             return {
@@ -38,6 +42,7 @@ class App extends Component {
             cookie: false,
             id: nextId(),
         }
+        localStorage.setItem(newItem.id, JSON.stringify(newItem));
         
         this.setState(({data}) => {
             const newArr = [ ...data, newItem];
@@ -47,7 +52,15 @@ class App extends Component {
         })
     }
 
-    render () {
+    onToggleCookie = (id) => {
+        console.log(`Cookie this ${id}`);
+    }
+
+    onToggleLike = (id) => {
+        console.log(`Like this ${id}`);
+    }
+
+    render() {
 
         const {data} = this.state;
     
@@ -62,7 +75,9 @@ class App extends Component {
     
                 <EmpList 
                     data={data}
-                    onDelete={this.deleteItem} />
+                    onDelete={this.deleteItem}
+                    onToggleCookie={this.onToggleCookie}
+                    onToggleLike={this.onToggleLike} />
                 <EmpAddForm 
                     onAdd={this.addItem}/>
             </div>
