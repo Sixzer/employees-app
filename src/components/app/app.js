@@ -23,6 +23,14 @@ class App extends Component {
     }
 
     deleteItem = (id) => {
+<<<<<<< HEAD
+=======
+
+
+        localStorage.removeItem(id);
+
+        this.setState(({data}) => {
+>>>>>>> 3b214b19c16679b3e95e455a664dc01f670d44f0
 
 
         localStorage.removeItem(id);
@@ -54,6 +62,7 @@ class App extends Component {
 
     onToggleCookie = (id) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         this.setState(({data}) => ({
             data: data.map(item => {
@@ -66,10 +75,13 @@ class App extends Component {
 
 =======
 >>>>>>> 3b214b1 (fix localStorage)
+=======
+>>>>>>> 3b214b19c16679b3e95e455a664dc01f670d44f0
         console.log(`Cookie this ${id}`);
     }
 
     onToggleLike = (id) => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         this.setState(({data}) => ({
@@ -86,14 +98,19 @@ class App extends Component {
 
     render () {
 =======
+=======
+>>>>>>> 3b214b19c16679b3e95e455a664dc01f670d44f0
         console.log(`Like this ${id}`);
     }
 
     render() {
+<<<<<<< HEAD
 >>>>>>> 3b214b1 (fix localStorage)
 
         const emp = this.state.data.length;
         const cookies = this.state.data.filter(item => item.cookie === true).length;
+=======
+>>>>>>> 3b214b19c16679b3e95e455a664dc01f670d44f0
 
         return (
             <div className="app">
@@ -111,7 +128,10 @@ class App extends Component {
                     data={this.state.data}
 =======
                     data={data}
+<<<<<<< HEAD
 >>>>>>> 3b214b1 (fix localStorage)
+=======
+>>>>>>> 3b214b19c16679b3e95e455a664dc01f670d44f0
                     onDelete={this.deleteItem}
                     onToggleCookie={this.onToggleCookie}
                     onToggleLike={this.onToggleLike} />
