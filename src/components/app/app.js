@@ -57,8 +57,6 @@ class App extends Component {
                 return item;
             })
         }))
-
-        console.log(`Cookie this ${id}`);
     }
 
     onToggleLike = (id) => {
@@ -71,8 +69,6 @@ class App extends Component {
                 return item;
             })
         }))
-
-        console.log(`Like this ${id}`);
     }
 
     render () {
