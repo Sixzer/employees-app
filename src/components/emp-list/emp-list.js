@@ -1,7 +1,7 @@
 import EmpListItem from "../emp-list-item/emp-list-item";
 import "./emp-list.css";
 
-const EmpList = ({data, onDelete, onToggleCookie, onToggleLike}) => {
+const EmpList = ({data, onDelete, onToggleProperty}) => {
 
     const elements = data.map(item => {
 
@@ -13,8 +13,7 @@ const EmpList = ({data, onDelete, onToggleCookie, onToggleLike}) => {
             key={id} 
             {...itemProps}
             onDelete={() => onDelete(id)}
-            onToggleCookie={() => onToggleCookie(id)}
-            onToggleLike={() => onToggleLike(id)} /> 
+            onToggleProperty={(e) => onToggleProperty(id, e.currentTarget.getAttribute("data-toggle"))} /> 
         )
     });
 

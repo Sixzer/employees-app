@@ -47,33 +47,45 @@ class App extends Component {
         })
     }
 
-    onToggleCookie = (id) => {
+    onToggleProperty = (id, prop) => {
         
         this.setState(({data}) => ({
             data: data.map(item => {
                 if (item.id === id) {
-                    return {...item, cookie: !item.cookie}
+                    return {...item, [prop]: !item[prop]}
                 }
                 return item;
             })
         }))
-
-        console.log(`Cookie this ${id}`);
     }
 
-    onToggleLike = (id) => {
+    // onToggleCookie = (id) => {
+        
+    //     this.setState(({data}) => ({
+    //         data: data.map(item => {
+    //             if (item.id === id) {
+    //                 return {...item, cookie: !item.cookie}
+    //             }
+    //             return item;
+    //         })
+    //     }))
 
-        this.setState(({data}) => ({
-            data: data.map(item => {
-                if (item.id === id) {
-                    return {...item, liked: !item.liked}
-                }
-                return item;
-            })
-        }))
+    //     console.log(`Cookie this ${id}`);
+    // }
 
-        console.log(`Like this ${id}`);
-    }
+    // onToggleLike = (id) => {
+
+    //     this.setState(({data}) => ({
+    //         data: data.map(item => {
+    //             if (item.id === id) {
+    //                 return {...item, liked: !item.liked}
+    //             }
+    //             return item;
+    //         })
+    //     }))
+
+    //     console.log(`Like this ${id}`);
+    // }
 
     render () {
 
@@ -94,8 +106,7 @@ class App extends Component {
                 <EmpList 
                     data={this.state.data}
                     onDelete={this.deleteItem}
-                    onToggleCookie={this.onToggleCookie}
-                    onToggleLike={this.onToggleLike} />
+                    onToggleProperty={this.onToggleProperty} />
                 <EmpAddForm 
                     onAdd={this.addItem} />
             </div>

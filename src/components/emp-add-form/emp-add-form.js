@@ -25,9 +25,6 @@ class EmpAddForm extends Component {
             salary: "",
         })
     }
-
-
-
     
     render () {
 
