@@ -15,16 +15,15 @@ class App extends Component {
         super(props);
         this.state = {
             data: [
-                {name: "Lev", salary: 55, cookie: false, id:1},
-                {name: "Alexandr", salary: 777, cookie: false, id:2},
-                {name: "Irina", salary: 6666, cookie: false, id:3},
+                {name: "Lev", salary: 55, cookie: false, liked: false, id:1},
+                {name: "Alexandr", salary: 777, cookie: false, liked: false, id:2},
+                {name: "Irina", salary: 6666, cookie: false, liked: false, id:3},
             ]
         }
     }
 
     deleteItem = (id) => {
         this.setState(({data}) => {
-
             return {
                 data: data.filter(item => item.id !== id),
             }
@@ -36,6 +35,7 @@ class App extends Component {
             name,
             salary,
             cookie: false,
+            liked: false,
             id: nextId(),
         }
         
@@ -47,13 +47,44 @@ class App extends Component {
         })
     }
 
+    onToggleCookie = (id) => {
+        
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id === id) {
+                    return {...item, cookie: !item.cookie}
+                }
+                return item;
+            })
+        }))
+
+        console.log(`Cookie this ${id}`);
+    }
+
+    onToggleLike = (id) => {
+
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id === id) {
+                    return {...item, liked: !item.liked}
+                }
+                return item;
+            })
+        }))
+
+        console.log(`Like this ${id}`);
+    }
+
     render () {
 
-        const {data} = this.state;
-    
+        const emp = this.state.data.length;
+        const cookies = this.state.data.filter(item => item.cookie === true).length;
+
         return (
             <div className="app">
-                <AppInfo />
+                <AppInfo 
+                emp={emp}
+                cookies={cookies} />
     
                 <div className="search-panel">
                     <SearchPanel />
@@ -61,10 +92,12 @@ class App extends Component {
                 </div>
     
                 <EmpList 
-                    data={data}
-                    onDelete={this.deleteItem} />
+                    data={this.state.data}
+                    onDelete={this.deleteItem}
+                    onToggleCookie={this.onToggleCookie}
+                    onToggleLike={this.onToggleLike} />
                 <EmpAddForm 
-                    onAdd={this.addItem}/>
+                    onAdd={this.addItem} />
             </div>
         );
     }

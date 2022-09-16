@@ -1,7 +1,7 @@
 import EmpListItem from "../emp-list-item/emp-list-item";
 import "./emp-list.css";
 
-const EmpList = function ({data, onDelete}) {
+const EmpList = ({data, onDelete, onToggleCookie, onToggleLike}) => {
 
     const elements = data.map(item => {
 
@@ -12,7 +12,9 @@ const EmpList = function ({data, onDelete}) {
             <EmpListItem 
             key={id} 
             {...itemProps}
-            onDelete={() => onDelete(id)}/> 
+            onDelete={() => onDelete(id)}
+            onToggleCookie={() => onToggleCookie(id)}
+            onToggleLike={() => onToggleLike(id)} /> 
         )
     });
 
