@@ -23,6 +23,10 @@ class App extends Component {
     }
 
     deleteItem = (id) => {
+
+
+        localStorage.removeItem(id);
+
         this.setState(({data}) => {
             return {
                 data: data.filter(item => item.id !== id),
@@ -38,6 +42,7 @@ class App extends Component {
             liked: false,
             id: nextId(),
         }
+        localStorage.setItem(newItem.id, JSON.stringify(newItem));
         
         this.setState(({data}) => {
             const newArr = [ ...data, newItem];
@@ -48,6 +53,7 @@ class App extends Component {
     }
 
     onToggleCookie = (id) => {
+<<<<<<< HEAD
         
         this.setState(({data}) => ({
             data: data.map(item => {
@@ -58,10 +64,13 @@ class App extends Component {
             })
         }))
 
+=======
+>>>>>>> 3b214b1 (fix localStorage)
         console.log(`Cookie this ${id}`);
     }
 
     onToggleLike = (id) => {
+<<<<<<< HEAD
 
         this.setState(({data}) => ({
             data: data.map(item => {
@@ -76,6 +85,12 @@ class App extends Component {
     }
 
     render () {
+=======
+        console.log(`Like this ${id}`);
+    }
+
+    render() {
+>>>>>>> 3b214b1 (fix localStorage)
 
         const emp = this.state.data.length;
         const cookies = this.state.data.filter(item => item.cookie === true).length;
@@ -92,7 +107,11 @@ class App extends Component {
                 </div>
     
                 <EmpList 
+<<<<<<< HEAD
                     data={this.state.data}
+=======
+                    data={data}
+>>>>>>> 3b214b1 (fix localStorage)
                     onDelete={this.deleteItem}
                     onToggleCookie={this.onToggleCookie}
                     onToggleLike={this.onToggleLike} />
