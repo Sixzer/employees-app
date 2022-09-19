@@ -42,8 +42,10 @@ class EmpAddForm extends Component {
                     onSubmit={this.onSubmit}>
                     <input 
                         type="text" 
-                        className="form-control new-post-label" 
+                        className="form-control new-post-label"
                         placeholder="Как его зовут?"
+                        required
+                        minLength="2"
                         title="name"
                         value={name}
                         onChange={this.onValueChange}/>
@@ -51,6 +53,7 @@ class EmpAddForm extends Component {
                         type="number" 
                         className="form-control new-post-label" 
                         placeholder="З/П в $$$?"
+                        required
                         title="salary"
                         value={salary}
                         onChange={this.onValueChange}/>
