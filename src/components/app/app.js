@@ -20,6 +20,7 @@ class App extends Component {
                 {name: "Irina", salary: 6666, cookie: false, liked: false, id:3},
             ],
             term: "",
+            filter: "all",
         }
     }
 
@@ -87,23 +88,41 @@ class App extends Component {
         this.setState({term});
     }
 
+    filterEmp = (items, filter) => {
+        switch (filter) {
+            case "liked":
+                return items.filter(item => item.liked === true);
+                //break;
+            case "salary1000":
+                return items.filter(item => item.salary > 1000);
+            default:
+                return items;
+        }
+     }
+
+    onFilterChange = (filter) => {
+        this.setState({filter});
+    }
+
     render () {
 
-        const {data, term} = this.state;
+        const {data, term, filter} = this.state;
         const emp = this.state.data.length;
         const cookies = this.state.data.filter(item => item.cookie === true).length;
-        const visibleData = this.searchEmp(data, term);
+        const visibleData = this.filterEmp(this.searchEmp(data, term), filter);
 
         return (
             <div className="app">
                 <AppInfo 
-                emp={emp}
-                cookies={cookies} />
+                    emp={emp}
+                    cookies={cookies} />
     
                 <div className="search-panel">
                     <SearchPanel
                         onUpdSearch={this.onUpdSearch} />
-                    <AppFilter />
+                    <AppFilter
+                        filter={filter}
+                        onFilterChange={this.onFilterChange} />
                 </div>
     
                 <EmpList 
